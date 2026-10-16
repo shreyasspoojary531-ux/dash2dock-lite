@@ -176,7 +176,7 @@ function dump(n, l) {
 }
 
 let app = new Adw.Application({
-  application_id: 'com.dash2dock-lite.GtkApplication',
+  application_id: 'com.dash2dock-blur.GtkApplication',
 });
 
 app.connect('activate', (me) => {
@@ -203,7 +203,7 @@ app.connect('activate', (me) => {
 
   let menu_util = builder.get_object('menu_util');
   w.add(menu_util);
-  w.title = 'Dash2Dock Animated';
+  w.title = 'Dash2Dock Blur';
 
   let headerbar = find(w, 'AdwHeaderBar');
   if (!headerbar) {

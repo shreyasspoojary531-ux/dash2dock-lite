@@ -4,26 +4,26 @@
      border: 2px solid magenta !important;
 }
 
-#dashtodockcontainer.hi,
-#d2daDock.hi {
+#dash2dockBlurContainer.hi,
+#d2dbDock.hi {
   border: 2px solid red; 
 }
 
-#DockStruts.hi {
+#d2dbDockStruts.hi {
   border: 2px solid yellow; 
 }
 
-#DockDwell.hi {
+#d2dbDockDwell.hi {
   border: 2px solid yellow; 
 }
 
-#dashtodockcontainer *,
-#d2daDock * {
+#dash2dockBlurContainer *,
+#d2dbDock * {
  margin: 0px !important;
  padding: 0px !important;
 }
 
-#d2daDock.hi #dash .dash-item-container {
+#d2dbDock.hi #dash .dash-item-container {
 }
 
 #dash .dash-item-container {

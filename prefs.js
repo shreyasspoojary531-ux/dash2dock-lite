@@ -7,7 +7,7 @@ import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import Adw from 'gi://Adw';
 
-const GETTEXT_DOMAIN = 'dash2dock-light';
+const GETTEXT_DOMAIN = 'dash2dock-blur';
 
 import { schemaId, SettingsKeys } from './preferences/keys.js';
 import { MonitorsConfig } from './monitors.js';
@@ -250,6 +250,9 @@ export default class Preferences extends ExtensionPreferences {
     this._themed_presets = [];
     this.preloadPresets(`${this.path}/themes`);
     this.preloadPresets(
+      GLib.build_filenamev([GLib.get_user_config_dir(), 'dash2dock-blur', 'themes'])
+    );
+    this.preloadPresets(
       GLib.build_filenamev([GLib.get_user_config_dir(), 'd2da', 'themes'])
     );
     this._buildThemesMenu(window);
@@ -333,7 +336,7 @@ export default class Preferences extends ExtensionPreferences {
 
       const exportDir = GLib.build_filenamev([
         GLib.get_user_config_dir(),
-        'd2da',
+        'dash2dock-blur',
       ]);
       GLib.mkdir_with_parents(exportDir, 0o700);
       const exportPath = GLib.build_filenamev([exportDir, 'theme.json']);

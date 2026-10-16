@@ -68,7 +68,7 @@ export const Style = class {
     GLib.mkdir_with_parents(runtimeDir, 0o700);
     const targetPath = GLib.build_filenamev([
       runtimeDir,
-      `d2da-${name}-${INSTANCE_ID}.css`,
+      `d2db-${name}-${INSTANCE_ID}.css`,
     ]);
 
     let fn = this.styles[name];

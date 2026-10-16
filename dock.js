@@ -54,8 +54,7 @@ export let Dock = GObject.registerClass(
   class DashToDock extends St.Widget {
     _init(params) {
       super._init({
-        // name: 'd2daDock',
-        name: 'dashtodockContainer',
+        name: 'dash2dockBlurContainer',
         style_class: 'bottom',
         reactive: false,
         track_hover: false,
@@ -75,7 +74,7 @@ export let Dock = GObject.registerClass(
       this._monitorIndex = Main.layoutManager.primaryIndex;
       this._needsLayout = true;
 
-      this._background = new DockBackground({ name: 'd2daBackground' });
+      this._background = new DockBackground({ name: 'd2dbBackground' });
       this.add_child(this._background);
 
       // for blur-my-shell
@@ -95,7 +94,7 @@ export let Dock = GObject.registerClass(
       this.fake_dash.has_allocation = () => { return true; };
       this.add_child(this.fake_dash);
       this.fake_dash_background = new St.Widget({
-        name: 'd2daFakeDashBackground',
+        name: 'd2dbFakeDashBackground',
         style_class: 'dash-background',
       });
       this.fake_dash.connect = () => false;
@@ -105,7 +104,7 @@ export let Dock = GObject.registerClass(
       this.fake_dash.visible = false;
 
       this.renderArea = new St.Widget({
-        name: 'DockRenderArea',
+        name: 'd2dbRenderArea',
         offscreen_redirect: Clutter.OffscreenRedirect.ALWAYS,
         reactive: false,
         track_hover: false,
@@ -130,11 +129,11 @@ export let Dock = GObject.registerClass(
       }
 
       this.struts = new St.Widget({
-        name: 'DockStruts',
+        name: 'd2dbDockStruts',
         offscreen_redirect: Clutter.OffscreenRedirect.ALWAYS,
       });
       this.dwell = new St.Widget({
-        name: 'DockDwell',
+        name: 'd2dbDockDwell',
         reactive: true,
         track_hover: true,
         offscreen_redirect: Clutter.OffscreenRedirect.ALWAYS,
@@ -495,7 +494,7 @@ export let Dock = GObject.registerClass(
       if (dashBg) {
         dashBg.visible = false;
         if (dashBg.first_child && !dashBg.first_child.name) {
-          dashBg.first_child.name = 'd2daDashSizerBox';
+          dashBg.first_child.name = 'd2dbDashSizerBox';
         }
       }
       let dashBox = Compat.getDashBox(this.dash);
@@ -517,7 +516,7 @@ export let Dock = GObject.registerClass(
       }
 
       this._extraIcons = new St.BoxLayout({
-        name: 'd2daExtraIcons',
+        name: 'd2dbExtraIcons',
       });
       this._extraIcons.connectObject(
         'child-added', () => {
@@ -540,7 +539,7 @@ export let Dock = GObject.registerClass(
       this._trashIcon = null;
 
       this._separator = new St.Widget({
-        name: 'd2daSeparator',
+        name: 'd2dbSeparator',
         style_class: 'dash-separator',
         y_align: Clutter.ActorAlign.CENTER,
         height: 48,
@@ -1093,7 +1092,7 @@ export let Dock = GObject.registerClass(
           icon: '_recentFilesIcon',
           folder: 'recent:///',
           //! find a way to avoid this
-          path: `${this.extension.path}/apps/recents-dash2dock-lite.desktop`,
+          path: `${this.extension.path}/apps/recents-dash2dock-blur.desktop`,
           // not ready for prime time
           // does not work on gnome 43 (debian)
           show: false, // this.extension.documents_icon,
@@ -1336,8 +1335,8 @@ export let Dock = GObject.registerClass(
       if (!vertical) {
         [...(this._separators ?? []), this._separator].forEach((sep) => {
           if (!sep) return;
-          sep._d2daHeight ??= sep.height;
-          let sepHeight = Math.min(itemSize, sep._d2daHeight);
+          sep._d2dbHeight ??= sep.height;
+          let sepHeight = Math.min(itemSize, sep._d2dbHeight);
           if (sep.height != sepHeight) {
             sep.height = sepHeight;
           }

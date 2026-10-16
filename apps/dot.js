@@ -13,7 +13,7 @@ export const Dot = GObject.registerClass(
   class Dot extends St.Widget {
     _init(x, settings = {}) {
       super._init({
-        name: 'd2daDot',
+        name: 'd2dbDot',
       });
 
       let size = x || 400;
@@ -38,7 +38,7 @@ const DotCanvas = GObject.registerClass(
   class DotCanvas extends St.DrawingArea {
     _init(settings = {}) {
       super._init({
-        name: 'd2daDotCanvas',
+        name: 'd2dbDotCanvas',
       });
 
       this.state = {};

@@ -23,7 +23,7 @@ export const DockItemList = GObject.registerClass(
   class DockItemList extends St.Widget {
     _init(renderer, params) {
       super._init({
-        name: 'DockItemList',
+        name: 'd2dbItemList',
         reactive: true,
         // style_class: 'hi',
         ...params,
@@ -122,9 +122,9 @@ export const DockItemList = GObject.registerClass(
 
       this._target = target;
 
-      this._box = new St.Widget({ name: 'd2daListBox' });
+      this._box = new St.Widget({ name: 'd2dbListBox' });
       this.add_child(this._box);
-      this._labels = new St.Widget({ name: 'd2daListLabels' });
+      this._labels = new St.Widget({ name: 'd2dbListLabels' });
       this.add_child(this._labels);
 
       dock._updateIconEffect();
@@ -142,8 +142,8 @@ export const DockItemList = GObject.registerClass(
 
       let icon_size = iconSize * iconAdjust;
       list.forEach((l) => {
-        let w = new St.Widget({ name: 'd2daListItem' });
-        let wl = new St.Widget({ name: 'd2daListLabelContainer' });
+        let w = new St.Widget({ name: 'd2dbListItem' });
+        let wl = new St.Widget({ name: 'd2dbListLabelContainer' });
         let icon = new St.Widget({
           name: 'icon_placeholder',
           reactive: true,
@@ -155,7 +155,7 @@ export const DockItemList = GObject.registerClass(
         this._labels.add_child(wl);
 
         let short = (l.name ?? '').replace(/(.{32})..+/, '$1...');
-        let label = new St.Label({ name: 'd2daListLabel', style_class: 'dash-label', text: short });
+        let label = new St.Label({ name: 'd2dbListLabel', style_class: 'dash-label', text: short });
         w.add_child(icon);
         w._label_container = wl;
         wl.add_child(label);

@@ -1,12 +1,13 @@
 {
-  "description": "The Animated & Effectful Dock",
-  "name": "Dash2Dock Animated",
+  "description": "The Animated & Effectful Dock with Dynamic Blur",
+  "name": "Dash2Dock Blur",
   "original-authors": ["icedman"],
   "shell-version": ["45", "46", "47", "48", "49", "50"],
-  "url": "https://github.com/icedman/dash2dock-lite",
-  "uuid": "dash2dock-lite@icedman.github.com",
-  "schema-id": "org.gnome.shell.extensions.dash2dock-lite",
-  "gettext-domain": "dash2dock-lite",
+  "url": "https://github.com/shreyasspoojary531-ux/dash2dock-lite",
+  "uuid": "dash2dock-blur@shreyasspoojary531-ux",
+  "settings-schema": "org.gnome.shell.extensions.dash2dock-blur",
+  "schema-id": "org.gnome.shell.extensions.dash2dock-blur",
+  "gettext-domain": "dash2dock-blur",
   "donations": {
     "buymeacoffee": "icedman"
   },

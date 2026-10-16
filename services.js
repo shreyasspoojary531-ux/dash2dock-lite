@@ -248,7 +248,7 @@ export const Services = class {
 
   setupTrashIcon() {
     let open_app = 'nautilus --select';
-    let content = `[Desktop Entry]\nVersion=1.0\nTerminal=false\nType=Application\nName=Trash\nExec=${open_app} trash:///\nIcon=user-trash\nStartupWMClass=trash-dash2dock-lite\nActions=trash;\n\n[Desktop Action trash]\nName=Empty Trash\nExec=gio trash --empty\nTerminal=false\n`;
+    let content = `[Desktop Entry]\nVersion=1.0\nTerminal=false\nType=Application\nName=Trash\nExec=${open_app} trash:///\nIcon=user-trash\nStartupWMClass=trash-dash2dock-blur\nActions=trash;\n\n[Desktop Action trash]\nName=Empty Trash\nExec=gio trash --empty\nTerminal=false\n`;
     this.trashApp = this._createAppInfoFromData(content);
     return this.trashApp;
   }
@@ -258,7 +258,7 @@ export const Services = class {
     let quoted_path = GLib.shell_quote(full_path);
     let open_app = 'nautilus --select';
 
-    let content = `[Desktop Entry]\nVersion=1.0\nTerminal=false\nType=Application\nName=${title}\nExec=${open_app} ${quoted_path}\nIcon=${icon}\nStartupWMClass=${name}-dash2dock-lite\n`;
+    let content = `[Desktop Entry]\nVersion=1.0\nTerminal=false\nType=Application\nName=${title}\nExec=${open_app} ${quoted_path}\nIcon=${icon}\nStartupWMClass=${name}-dash2dock-blur\n`;
     let appInfo = this._createAppInfoFromData(content);
     if (!this.folderApps) {
       this.folderApps = {};
@@ -747,7 +747,7 @@ export const Services = class {
       uri,
       -1
     );
-    return `mount-${key}-dash2dock-lite.desktop`;
+    return `mount-${key}-dash2dock-blur.desktop`;
   }
 
   _escapeDesktopValue(value) {

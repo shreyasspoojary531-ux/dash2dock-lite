@@ -142,7 +142,7 @@ const DockItemOverlay = GObject.registerClass(
   class DockItemOverlay extends St.Widget {
     _init(renderer, params) {
       super._init({
-        name: params?.name || 'd2daItemOverlay',
+        name: params?.name || 'd2dbItemOverlay',
         ...params,
       });
 
@@ -159,7 +159,7 @@ export const DockItemDotsOverlay = GObject.registerClass(
   class DockItemDotsOverlay extends DockItemOverlay {
     _init(renderer, params = {}) {
       super._init(renderer, {
-        name: 'd2daDotsOverlay',
+        name: 'd2dbDotsOverlay',
         ...params,
       });
     }
@@ -225,7 +225,7 @@ export const DockItemBadgeOverlay = GObject.registerClass(
   class DockItemBadgeOverlay extends DockItemOverlay {
     _init(renderer, params = {}) {
       super._init(renderer, {
-        name: 'd2daBadgeOverlay',
+        name: 'd2dbBadgeOverlay',
         ...params,
       });
     }
@@ -286,7 +286,7 @@ export const DockIcon = GObject.registerClass(
 
     _createIcon(size) {
       this._iconActor = new St.Icon({
-        name: 'd2daDockIconActor',
+        name: 'd2dbDockIconActor',
         icon_name: this._default_icon_name || 'file',
         icon_size: size,
         style_class: this._default_icon_style_class || '',
@@ -362,7 +362,7 @@ export const DockItemContainer = GObject.registerClass(
   class DockItemContainer extends DashItemContainer {
     _init(params) {
       super._init({
-        name: 'd2daItemContainer',
+        name: 'd2dbItemContainer',
         style_class: 'dash-item-container',
         ...params,
         scale_x: 1,
@@ -407,7 +407,7 @@ export const DockItemContainer = GObject.registerClass(
       }
 
       let dashIcon = new DockIcon(desktopApp, {
-        name: 'd2daDockIcon',
+        name: 'd2dbDockIcon',
         style_class: 'dash-item-container',
         ...(params || {}),
       });
@@ -474,7 +474,7 @@ export const DockBackground = GObject.registerClass(
   class DockBackground extends St.Widget {
     _init(params) {
       super._init({
-        name: 'DockBackground',
+        name: 'd2dbBackground',
         ...(params || {}),
       });
     }

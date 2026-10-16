@@ -1,215 +1,70 @@
-# Dash2Dock Animated
+# Dash2Dock Blur
 
-A GNOME Shell 40+ Extension
+A GNOME Shell Extension with smooth animations, customizable styling, and dynamic macOS-style background blur behind the dock.
 
-[!["Buy Me A Coffee"](https://raw.githubusercontent.com/icedman/dash2dock-lite/main/docs/support-coffee.png)](https://www.buymeacoffee.com/icedman)
-[![Ko-fi](https://raw.githubusercontent.com/icedman/dash2dock-lite/main/docs/support-kofi.png)](https://ko-fi.com/icedman)
+This project is a fork of [Dash2Dock Animated](https://github.com/icedman/dash2dock-lite) by icedman. Huge thanks and full credit to [icedman](https://github.com/icedman) and upstream contributors for the original dock implementation!
 
-![Contributors](https://img.shields.io/github/contributors/icedman/dash2dock-lite?color=dark-green) ![Forks](https://img.shields.io/github/forks/icedman/dash2dock-lite?style=social) ![Stargazers](https://img.shields.io/github/stars/icedman/dash2dock-lite?style=social) ![Issues](https://img.shields.io/github/issues/icedman/dash2dock-lite) ![License](https://img.shields.io/github/license/icedman/dash2dock-lite) ![GitHub Downloads](https://img.shields.io/github/downloads/icedman/dash2dock-lite/total)
+### Notice & Compatibility
 
-![Screen Shot](https://raw.githubusercontent.com/icedman/dash2dock-lite/main/screenshots/Screenshot%20from%202024-03-19%2015-31-27.png)
-
-### Announcement/Warning
-
-Maintenance and GNOME version compatibility updates are now primarily assisted by AI.
-
-Due to GNOME Extensions reviewer policies regarding AI tooling, updates will no longer be submitted to extensions.gnome.org and will be published exclusively through this repository. Releases will include simple installation instructions.
-
-If you prefer strictly human-written code, feel free to skip this extension. If you enjoy having updates keep pace with new GNOME releases and want to help fund the AI compute tokens keeping it alive, support via [Buy Me A Coffee](https://www.buymeacoffee.com/icedman) or [Ko-fi](https://ko-fi.com/icedman) is greatly appreciated.
-
-### Notice
-
-* Supports GNOME 42, 43, 44, 45, 46, 47, 48, 49, 50
-* Older versions are largely unsupported
+* Extension UUID: `dash2dock-blur@shreyasspoojary531-ux`
+* Settings Schema: `org.gnome.shell.extensions.dash2dock-blur`
+* Supports GNOME Shell 45, 46, 47, 48, 49, 50+
 
 ### Features
 
-* Multi-monitor support (new!)
-* Dash docked at the desktop
-* Animated dock icons
-* Resize icons
-* Autohide/intellihide
-* Dock positions: bottom, top, left, right
-* Scroll wheel to cycle windows
-* Click to maximize/minimize windows
-* Style top panel
-* Panel mode
-* Show/Hide Apps icon
-* Analog clock
-* Dynamic calendar
-* Dynamic trash icon
-* Mounted devices
-* Downloads icon with fan animation (new!)
-* Icon color effects (Tint, Monochrome)
-* Custom icons
-
-### Third-Party Compatibility
-
-* [Compiz Magic Lamp Animation](https://github.com/PR3SIDENT/gnome-shell-extension-compiz-alike-magic-lamp-effect)
-* [Blur my Shell](https://github.com/aunetx/blur-my-shell)
-
-### Prerequisites
-
-* GNOME Shell (version 42+)
+* **Dynamic macOS-Style Background Blur**: Native Shell background blur with translucent tint and smooth rounded corners.
+* **Independent Coexistence**: Configured with unique IDs, schemas, and CSS names to operate independently from upstream Dash2Dock Animated and Ubuntu Dock.
+* **Fluid Dock Animations**: Magnification, spread, and rise icon effects.
+* **Autohide / Intellihide**: Smooth dodge mode and pressure-sense reveal.
+* **Dock Positions**: Bottom, left, right, top.
+* **Panel and Floating Modes**.
+* **Integrated Indicators**: Running app indicators, notification badges, dynamic trash icon, mounts, clock, and calendar.
 
 ### Installation
 
-#### Quick Install (Recommended)
-
-Run the one-line installer in your terminal. It automatically detects your GNOME Shell version, presents compatible releases, downloads, installs, and offers to enable the extension:
-
-```bash
-bash <(curl -sSL https://raw.githubusercontent.com/icedman/dash2dock-lite/main/install.sh)
-```
-or
-
-```bash
-curl -sSL https://raw.githubusercontent.com/icedman/dash2dock-lite/main/install.sh | bash
-```
-
----
-
-#### Manual Installation from Source
+#### Install from Source
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/icedman/dash2dock-lite.git
+   git clone https://github.com/shreyasspoojary531-ux/dash2dock-lite.git dash2dock-blur
+   cd dash2dock-blur
    ```
-2. Build and install using the `Makefile`:
+
+2. Compile the settings schema and install:
    ```bash
-   cd dash2dock-lite
-   make
+   make install
+   ```
+   Or symlink directly into your extensions folder:
+   ```bash
+   mkdir -p ~/.local/share/gnome-shell/extensions
+   ln -s "$(pwd)" ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux
+   glib-compile-schemas schemas/
    ```
 
-#### Using the AUR (Arch User Repository)
+3. Enable the extension:
+   ```bash
+   gnome-extensions enable dash2dock-blur@shreyasspoojary531-ux
+   ```
 
-*This requires an Arch-based distribution to work:*
+*(Note: Disable Ubuntu Dock or Dash2Dock Animated while using Dash2Dock Blur to avoid duplicate docks.)*
+
+#### Preferences
+
+Open the preferences dialog:
 ```bash
-git clone https://aur.archlinux.org/gnome-shell-extension-dash2dock-lite.git
-cd gnome-shell-extension-dash2dock-lite
-makepkg -si
+gnome-extensions prefs dash2dock-blur@shreyasspoojary531-ux
 ```
 
-#### From GNOME Extensions Repository
+## Custom Configuration & Styles
 
-Visit [https://extensions.gnome.org/extension/4994/dash2dock-lite/](https://extensions.gnome.org/extension/4994/dash2dock-lite/)
+Configuration files are loaded from `~/.config/dash2dock-blur/` (with automatic fallback to `~/.config/d2da/` if present).
+You can add custom styles by creating `style.css` in that folder.
 
-## Theme Support
+## Upstream Credits
 
-Export your settings under **Style** > **Themes Button** > **"Export"**...
-
-This will be saved to `/tmp/theme.json`. Edit this JSON file and save it under `~/.config/d2da/themes` or at `{extension_path}/themes` so that it becomes available in the extension settings app.
-
-## Custom Icons
-
-Create a folder under `~/.config/d2da/icons` and place your SVG icons there. Then create a file under `~/.config/d2da/icons.json` using the following format:
-
-```json
-{
-  "icons": {
-     "view-app-grid-symbolic": "icons/show-apps-icon.svg",
-     "user-trash": "icons/my-own-trash.svg",
-     "user-trash-full": "icons/my-own-trash-full.svg"
-  }
-}
-```
-
-You may also use **icon names** from your favorite icon theme using the following format:
-
-```json
-{
-  "icons": {
-     "view-app-grid-symbolic": "show-apps-icon",
-     "user-trash": "trash",
-     "user-trash-full": "trash-full"
-  }
-}
-```
-
-The icons `show-apps-icon`, `trash`, and `trash-full` must be available in your icon theme folder.
-
-Alternatively, you may override icons via app ID:
-
-```json
-{
-   "apps": {
-      "spotify_spotify": "icons/spotify.svg"
-   }
-}
-```
-
-Check the logs to see the icon names currently being used by Dash2Dock Animated. Search for log text such as:
-
-```sh
-Icon created "user-trash"
-```
-
-## Custom Config
-
-Create a file `config.json` under the folder `~/.config/d2da/`
-
-```json
-{
-  "file-explorer": "nemo",
-  "icon-size": "24"
-}
-```
-
-* Disable then enable the extension to load the configuration
-* `file-explorer` overrides the default "nautilus"
-* `icon-size` overrides the icon scale from the preferences panel
-
-## Custom CSS
-
-Create a file `style.css` under the folder `~/.config/d2da/`
-
-For now, you will have to use Looking Glass (GNOME's built-in debugger) to inspect class names and styles.
-
-## Blurred Background
-
-The blurred background feature requires **ImageMagick** to be installed on the system. This generates the blurred image based on the desktop wallpaper.
-
-## GNOME 42, 43, 44 Support
-
-To build and install Dash2Dock Animated for older versions (prior to GNOME 45), run:
-
-```bash
-make g44
-```
-
-## Bug Reporting
-
-When reporting bugs, please include the following details:
-
-* Linux Flavor/Distribution and version
-* GNOME version (e.g. 45.xx)
-* Dash2Dock Animated release number
-
-Check for any exceptions in the logs by running the following in the terminal:
-
-```bash
-journalctl /usr/bin/gnome-shell -f -o cat
-```
-
-To check for incompatibilities with other extensions, try running Dash2Dock Animated with all other extensions disabled.
-
-To check for lag or inefficiency, run the following in the terminal and observe `gnome-shell` CPU usage:
-
-```bash
-top -d 0.5
-```
-
-On a Dell XPS 13 (i5-6200U), CPU usage is about 50% with icon quality set to High, frame rate set to High, and shadows enabled.
-
-Please be specific about the errors encountered, and attach screenshots if possible.
-
-## Testing Rig
-
-* Fedora 43 (GNOME 49)
-* Arch Linux (GNOME 49)
-* Fedora 37 Live (GNOME 42)
-* Ubuntu 23 (GNOME 45)
+* Upstream project: [icedman/dash2dock-lite](https://github.com/icedman/dash2dock-lite)
+* Original Author: icedman ([Buy Me A Coffee](https://www.buymeacoffee.com/icedman) / [Ko-fi](https://ko-fi.com/icedman))
 
 ## License
 
-Distributed under the GPL 3.0 License. See [LICENSE](LICENSE) for more information.
+Distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.

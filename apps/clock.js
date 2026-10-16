@@ -127,7 +127,7 @@ export const Clock = GObject.registerClass(
   class Clock extends St.Widget {
     _init(x, settings = {}) {
       super._init({
-        name: 'd2daClock',
+        name: 'd2dbClock',
       });
 
       let size = x || 400;
@@ -155,7 +155,7 @@ const ClockCanvas = GObject.registerClass(
   class ClockCanvas extends St.DrawingArea {
     _init(settings = {}) {
       super._init({
-        name: 'd2daClockCanvas',
+        name: 'd2dbClockCanvas',
       });
 
       this.settings = {

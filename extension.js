@@ -153,7 +153,7 @@ const REACTIONS = Object.freeze({
   'trash-icon': ['layout', 'animate_refresh'],
 });
 
-export default class Dash2DockLiteExt extends Extension {
+export default class Dash2DockBlurExt extends Extension {
   createDock() {
     let d = new Dock({ extension: this });
     d.extension = this;
@@ -331,7 +331,7 @@ export default class Dash2DockLiteExt extends Extension {
     this._queryDisplay();
     // this.startUp();
 
-    console.log('dash2dock-lite enabled');
+    console.log('dash2dock-blur enabled');
 
     // to allow dynamic imports
     this._loTimer.runOnce(() => {
@@ -391,7 +391,7 @@ export default class Dash2DockLiteExt extends Extension {
     delete this.icon_theme;
     this.icon_theme = null;
 
-    console.log('dash2dock-lite disabled');
+    console.log('dash2dock-blur disabled');
 
     probe(this, 'after-disable', probeTimers);
   }
@@ -467,13 +467,26 @@ export default class Dash2DockLiteExt extends Extension {
 
   async _loadConfig() {
     this._config = {};
-    const configDir = GLib.build_filenamev([
+    let configDir = GLib.build_filenamev([
       GLib.get_user_config_dir(),
-      'd2da',
+      'dash2dock-blur',
     ]);
     let fn_config = Gio.File.new_for_path(
       GLib.build_filenamev([configDir, 'config.json'])
     );
+    if (!fn_config.query_exists(null)) {
+      let fallbackDir = GLib.build_filenamev([
+        GLib.get_user_config_dir(),
+        'd2da',
+      ]);
+      let fn_fallback = Gio.File.new_for_path(
+        GLib.build_filenamev([fallbackDir, 'config.json'])
+      );
+      if (fn_fallback.query_exists(null)) {
+        configDir = fallbackDir;
+        fn_config = fn_fallback;
+      }
+    }
     if (fn_config.query_exists(null)) {
       try {
         const contents = await loadFile(fn_config);
@@ -565,17 +578,19 @@ export default class Dash2DockLiteExt extends Extension {
     this.icon_map_cache = {};
     this.app_map_cache = {};
 
-    const configDir = GLib.build_filenamev([
-      GLib.get_user_config_dir(),
-      'd2da',
-    ]);
-    let fn_style = Gio.File.new_for_path(
-      GLib.build_filenamev([configDir, 'style.css'])
-    );
-    if (fn_style.query_exists(null)) {
-      let ctx = St.ThemeContext.get_for_stage(global.stage);
-      let theme = ctx.get_theme();
-      theme.unload_stylesheet(fn_style);
+    for (const dirName of ['dash2dock-blur', 'd2da']) {
+      const configDir = GLib.build_filenamev([
+        GLib.get_user_config_dir(),
+        dirName,
+      ]);
+      let fn_style = Gio.File.new_for_path(
+        GLib.build_filenamev([configDir, 'style.css'])
+      );
+      if (fn_style.query_exists(null)) {
+        let ctx = St.ThemeContext.get_for_stage(global.stage);
+        let theme = ctx.get_theme();
+        theme.unload_stylesheet(fn_style);
+      }
     }
   }
 
@@ -1101,7 +1116,7 @@ export default class Dash2DockLiteExt extends Extension {
     // icons-shadow
     if (this.icon_shadow) {
       styles.push(
-        '#d2daIcon, #DockItemList StIcon {icon-shadow: rgba(0, 0, 0, 0.32) 0 2px 6px;}'
+        '#d2dbIcon, #d2dbItemList StIcon {icon-shadow: rgba(0, 0, 0, 0.32) 0 2px 6px;}'
       );
       // styles.push(
       //   '#dash StIcon:hover, #DockItemList StIcon:hover {icon-shadow: rgba(0, 0, 0, 0.24) 0 2px 8px;}'
@@ -1119,7 +1134,7 @@ export default class Dash2DockLiteExt extends Extension {
       this.computed_border_radius = r;
       let rgba = this._style.rgba(this.background_color);
       ss.push(`background: rgba(${rgba});`);
-      styles.push(`#d2daBackground { ${ss.join(' ')}}`);
+      styles.push(`#d2dbBackground { ${ss.join(' ')}}`);
     }
 
     // icon backgrounds

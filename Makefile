@@ -21,19 +21,19 @@ build:
 
 install: build
 	echo "installing..."
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
-	mkdir -p ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
-	cp -R ./* ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/build
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/Makefile
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/tests
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/tools
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/screenshots
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/node_modules
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/agents
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/eslint.config.js
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/package.json
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/package-lock.json
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
+	mkdir -p ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
+	cp -R ./* ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/build
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/Makefile
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/tests
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/tools
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/screenshots
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/node_modules
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/agents
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/eslint.config.js
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/package.json
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/package-lock.json
 
 clean:
 	rm -rf ./build
@@ -43,12 +43,12 @@ publish:
 
 install-zip:
 	echo "installing zip..."
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com
-	mkdir -p ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
-	unzip -q dash2dock-lite@icedman.github.com.zip -d ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux
+	mkdir -p ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
+	unzip -q dash2dock-blur@shreyasspoojary531-ux.zip -d ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
 
 test-prefs:
-	gnome-extensions prefs dash2dock-lite@icedman.github.com
+	gnome-extensions prefs dash2dock-blur@shreyasspoojary531-ux
 
 test-shell: check-devkit install
 	rm -f $(DISABLE_EXT_FLAG)
@@ -73,29 +73,29 @@ g44: build
 	mkdir -p ./build/effects
 	mkdir -p ./build/preferences
 	python3 ./tools/transpile.py
-	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
-	mkdir -p ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
+	rm -rf ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
+	mkdir -p ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
 	cp -R ./schemas ./build
 	cp -R ./themes ./build
 	cp -R ./ui ./build
 	cp -R apps/*.sh ./build/apps
 	cp -R apps/*.desktop ./build/apps
-	rm -rf build/apps/mount-dash2dock-lite.desktop
+	rm -rf build/apps/mount-dash2dock-blur.desktop
 	cp ./effects/*.glsl ./build/effects
 	cp ./LICENSE* ./build
 	-cp ./CHANGELOG* ./build 2>/dev/null || true
 	cp ./README* ./build
 	cp ./stylesheet.css ./build
 	cp ./apps/recents.js ./build/apps
-	cp -r ./build/* ~/.local/share/gnome-shell/extensions/dash2dock-lite@icedman.github.com/
+	cp -r ./build/* ~/.local/share/gnome-shell/extensions/dash2dock-blur@shreyasspoojary531-ux/
 
 publish-g44: g44
 	echo "publishing..."
 	cd build ; \
-	zip -qr ../dash2dock-lite@icedman.github.com.zip .
+	zip -qr ../dash2dock-blur@shreyasspoojary531-ux.zip .
 
 test-prefs-g44: g44
-	gnome-extensions prefs dash2dock-lite@icedman.github.com
+	gnome-extensions prefs dash2dock-blur@shreyasspoojary531-ux
 
 test-shell-g44: g44
 	env GNOME_SHELL_SLOWDOWN_FACTOR=2 \

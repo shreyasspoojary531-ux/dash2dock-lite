@@ -471,6 +471,31 @@
         <summary>Enable background blur</summary>
         <description></description>
     </key>
+    <key type="b" name="enable-blur">
+        <default>true</default>
+        <summary>Enable dynamic background blur</summary>
+        <description>Blur wallpaper and windows behind the dock.</description>
+    </key>
+    <key type="i" name="blur-radius">
+        <default>30</default>
+        <summary>Blur radius</summary>
+        <description>Gaussian blur radius in pixels (0-100).</description>
+    </key>
+    <key type="d" name="blur-tint-opacity">
+        <default>0.25</default>
+        <summary>Blur tint opacity</summary>
+        <description>Opacity of translucent tint layer (0.0 - 1.0).</description>
+    </key>
+    <key type="(dddd)" name="blur-tint-color">
+        <default>(0.9,0.9,0.9,1.0)</default>
+        <summary>Blur tint color</summary>
+        <description>Translucent tint color in RGBA.</description>
+    </key>
+    <key type="i" name="blur-corner-radius">
+        <default>18</default>
+        <summary>Blur corner radius</summary>
+        <description>Corner radius for rounded dock blur (0-64).</description>
+    </key>
     <key type="i" name="multi-monitor-filter">
         <default>0</default>
         <summary>Multi-Monitor Filter</summary>

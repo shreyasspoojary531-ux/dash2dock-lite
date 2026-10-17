@@ -68,6 +68,7 @@ SETTING_WIDGET_CLASSES = {
     'GtkScale': 'scale',
     'GtkDropDown': 'dropdown',
     'GtkColorButton': 'color',
+    'GtkSpinButton': 'spin',
 }
 # keys.js widget_types that are expected to have a ui widget.
 UI_WIDGET_TYPES = set(SETTING_WIDGET_CLASSES.values())

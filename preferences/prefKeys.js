@@ -68,8 +68,17 @@ export let PrefKeys = class {
           settings.set_int(name, value);
           break;
         }
+        case 'spin': {
+          settings.set_int(name, Math.round(value));
+          break;
+        }
         case 'scale': {
-          settings.set_double(name, value);
+          let schemaKey = settings.settings_schema ? settings.settings_schema.get_key(name) : null;
+          if (schemaKey && schemaKey.get_value_type().dup_string() === 'i') {
+            settings.set_int(name, Math.round(value));
+          } else {
+            settings.set_double(name, value);
+          }
           break;
         }
         case 'color': {
@@ -135,6 +144,7 @@ export let PrefKeys = class {
           case 'dropdown':
             key.object.set_selected(key.value);
             break;
+          case 'spin':
           case 'scale':
           case 'string':
             key.object.set_value(key.value);
@@ -185,8 +195,17 @@ export let PrefKeys = class {
           key.value = settings.get_int(name);
           break;
         }
+        case 'spin': {
+          key.value = settings.get_int(name);
+          break;
+        }
         case 'scale': {
-          key.value = settings.get_double(name);
+          let schemaKey = settings.settings_schema ? settings.settings_schema.get_key(name) : null;
+          if (schemaKey && schemaKey.get_value_type().dup_string() === 'i') {
+            key.value = settings.get_int(name);
+          } else {
+            key.value = settings.get_double(name);
+          }
           break;
         }
         case 'string': {
@@ -221,8 +240,17 @@ export let PrefKeys = class {
               key.value = settings.get_int(name);
               break;
             }
+            case 'spin': {
+              key.value = settings.get_int(name);
+              break;
+            }
             case 'scale': {
-              key.value = settings.get_double(name);
+              let schemaKey = settings.settings_schema ? settings.settings_schema.get_key(name) : null;
+              if (schemaKey && schemaKey.get_value_type().dup_string() === 'i') {
+                key.value = settings.get_int(name);
+              } else {
+                key.value = settings.get_double(name);
+              }
               break;
             }
             case 'color': {
@@ -298,10 +326,11 @@ export let PrefKeys = class {
           });
           break;
         }
+        case 'spin':
         case 'scale': {
           signal_id = key.object.connect('value-changed', (w) => {
             if (self._syncing) return;
-            let value = w.get_value();
+            let value = key.widget_type === 'spin' ? Math.round(w.get_value()) : w.get_value();
             self.setValue(name, value);
           });
           break;

@@ -360,13 +360,79 @@
         </child>
         <child>
           <object class="AdwActionRow">
-            <property name="visible">true</property>
             <property name="title" translatable="yes">Background Blur</property>
-            <property name="subtitle" translatable="yes">Add background blur with current wallpaper. Requires the [blur-my-shell@aunetx] extension. WARNING! This feature is UNSTABLE.</property>
-            <property name="activatable-widget">blur-background</property>
+            <property name="subtitle" translatable="yes">Enable dynamic macOS-style background blur behind the dock.</property>
+            <property name="activatable-widget">enable-blur</property>
             <child>
-              <object class="GtkSwitch" id="blur-background">
+              <object class="GtkSwitch" id="enable-blur">
                 <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Blur Strength (Radius)</property>
+            <property name="subtitle" translatable="yes">Gaussian blur radius in pixels (0-100).</property>
+            <property name="activatable-widget">blur-radius</property>
+            <child>
+              <object class="GtkScale" id="blur-radius">
+                <property name="valign">center</property>
+                <property name="hexpand">true</property>
+                <property name="width-request">140px</property>
+                <property name="draw-value">true</property>
+                <property name="value-pos">right</property>
+                <property name="digits">0</property>
+                <property name="adjustment">blur-radius-adjust</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Blur Tint Opacity</property>
+            <property name="subtitle" translatable="yes">Opacity of translucent tint overlay (0.0 - 1.0).</property>
+            <property name="activatable-widget">blur-tint-opacity</property>
+            <child>
+              <object class="GtkScale" id="blur-tint-opacity">
+                <property name="valign">center</property>
+                <property name="hexpand">true</property>
+                <property name="width-request">140px</property>
+                <property name="draw-value">true</property>
+                <property name="value-pos">right</property>
+                <property name="digits">2</property>
+                <property name="adjustment">blur-tint-opacity-adjust</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Blur Tint Color</property>
+            <property name="subtitle" translatable="yes">Translucent tint overlay color.</property>
+            <property name="activatable-widget">blur-tint-color</property>
+            <child>
+              <object class="GtkColorButton" id="blur-tint-color">
+                <property name="valign">center</property>
+                <property name="hexpand">false</property>
+                <property name="width-request">70px</property>
+                <property name="height-request">45px</property>
+                <property name="show-editor">true</property>
+                <property name="use-alpha">true</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Blur Corner Radius</property>
+            <property name="subtitle" translatable="yes">Corner radius for rounded dock blur (0-64 px).</property>
+            <property name="activatable-widget">blur-corner-radius</property>
+            <child>
+              <object class="GtkSpinButton" id="blur-corner-radius">
+                <property name="valign">center</property>
+                <property name="numeric">true</property>
+                <property name="adjustment">blur-corner-radius-adjust</property>
               </object>
             </child>
           </object>
@@ -737,6 +803,24 @@
     <property name="lower">-1.0</property>
     <property name="upper">1.0</property>
     <property name="step-increment">0.01</property>
+  </object>
+  <object class="GtkAdjustment" id="blur-radius-adjust">
+    <property name="lower">0</property>
+    <property name="upper">100</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="blur-tint-opacity-adjust">
+    <property name="lower">0.0</property>
+    <property name="upper">1.0</property>
+    <property name="step-increment">0.05</property>
+    <property name="page-increment">0.1</property>
+  </object>
+  <object class="GtkAdjustment" id="blur-corner-radius-adjust">
+    <property name="lower">0</property>
+    <property name="upper">64</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">5</property>
   </object>
   <object class="GtkStringList" id="running-indicator-style-model">
     <items>

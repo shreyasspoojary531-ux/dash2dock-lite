@@ -461,6 +461,31 @@ export const SettingsKeys = (patch) => {
       widget_type: 'switch',
       themed: true,
     },
+    'enable-blur': {
+      default_value: true,
+      widget_type: 'switch',
+      themed: true,
+    },
+    'blur-radius': {
+      default_value: 30,
+      widget_type: 'scale',
+      themed: true,
+    },
+    'blur-tint-opacity': {
+      default_value: 0.25,
+      widget_type: 'scale',
+      themed: true,
+    },
+    'blur-tint-color': {
+      default_value: [0.9, 0.9, 0.9, 1.0],
+      widget_type: 'color',
+      themed: true,
+    },
+    'blur-corner-radius': {
+      default_value: 18,
+      widget_type: 'spin',
+      themed: true,
+    },
     'multi-monitor-filter': {
       default_value: 0,
       widget_type: 'dropdown',
